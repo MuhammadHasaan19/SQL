@@ -1,0 +1,149 @@
+SET SQL_SAFE_UPDATES = 0;
+DROP DATABASE IF EXISTS MANUFACTURER_COMPANY;
+CREATE DATABASE MANUFACTURER_COMPANY;
+USE MANUFACTURER_COMPANY;
+
+CREATE TABLE Customer (
+  customer_id			 VARCHAR(8) NOT NULL UNIQUE PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  contact_information VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE Employee (
+  employee_id VARCHAR(8) NOT NULL UNIQUE,
+  name VARCHAR(15) NOT NULL,
+  contact_information VARCHAR(255) NOT NULL,
+  job_title VARCHAR(15)
+);
+
+CREATE TABLE Product_Category (
+  category_id VARCHAR(8) NOT NULL UNIQUE,
+  name VARCHAR(15) NOT NULL
+);
+
+CREATE TABLE Product (
+  product_id VARCHAR(8) NOT NULL UNIQUE,
+  name VARCHAR(15) NOT NULL,
+  description VARCHAR(50),
+  category_id VARCHAR(8) NOT NULL,
+  manufacturer_id VARCHAR(8) NOT NULL
+);
+
+CREATE TABLE Transaction (
+   transaction_id VARCHAR(8) NOT NULL UNIQUE PRIMARY KEY,
+  date DATE NOT NULL,
+  total_amount INT NOT NULL,
+  customer_id VARCHAR(8) NOT NULL,
+  employee_id VARCHAR(8) NOT NULL,
+  CONSTRAINT fk_transaction_customer_id
+    FOREIGN KEY (customer_id)
+    REFERENCES Customer (customer_id)
+    ON DELETE CASCADE,
+  CONSTRAINT fk_transaction_employee_id
+    FOREIGN KEY (employee_id)
+    REFERENCES Employee (employee_id)
+    ON DELETE CASCADE
+);
+
+CREATE TABLE Product_Transaction (
+    quantity INT NOT NULL,
+  transaction_id VARCHAR(8) NOT NULL,
+  product_id VARCHAR(8) NOT NULL,
+  CONSTRAINT fk_product_transaction_transaction_id
+    FOREIGN KEY (transaction_id)
+    REFERENCES Transaction (transaction_id)
+    ON DELETE CASCADE,
+  CONSTRAINT fk_product_transaction_product_id
+    FOREIGN KEY (product_id)
+    REFERENCES Product (product_id)
+    ON DELETE CASCADE
+);
+
+CREATE TABLE Service (
+  service_id VARCHAR(8) NOT NULL UNIQUE					PRIMARY KEY,
+  name VARCHAR(15),
+  description VARCHAR(50),
+  cost INT,
+  category_id VARCHAR(8) NOT NULL,
+  provider_id VARCHAR(8) NOT NULL
+);
+
+CREATE TABLE Service_Transaction (
+  transaction_id VARCHAR(8) NOT NULL,
+  service_id VARCHAR(8) NOT NULL,
+  CONSTRAINT fk_service_transaction_transaction_id
+    FOREIGN KEY (transaction_id)
+    REFERENCES Transaction (transaction_id)
+    ON DELETE CASCADE,
+  CONSTRAINT fk_service_transaction_service_id
+    FOREIGN KEY (service_id)
+    REFERENCES Service (service_id)
+    ON DELETE CASCADE
+);
+
+CREATE TABLE Manufacturer (
+  manufacturer_id VARCHAR(8) NOT NULL UNIQUE  PRIMARY KEY,
+  name VARCHAR(15) NOT NULL
+);
+
+CREATE TABLE Supplier (
+  supplier_id VARCHAR(8) NOT NULL UNIQUE,
+  name VARCHAR(15),
+  contact_information VARCHAR(255) NOT NULL
+);
+
+
+CREATE TABLE Service_Category (
+  category_id VARCHAR(8) NOT NULL UNIQUE,
+  name VARCHAR(15) NOT NULL
+);
+
+CREATE TABLE Provider (
+  provider_id VARCHAR(8) NOT NULL UNIQUE    PRIMARY KEY,
+  name VARCHAR(15) NOT NULL
+);
+
+CREATE TABLE Business_unit (
+  business_unit_id VARCHAR(8) NOT NULL UNIQUE,
+  name VARCHAR(15) NOT NULL
+);
+
+CREATE TABLE Supplier_product (
+
+        supplier_id 	VARCHAR(8) 		NOT NULL 	UNIQUE,        
+		product_id		VARCHAR(8)		NOT NULL  	UNIQUE,
+        
+		CONSTRAINT fk_product_id
+		FOREIGN KEY (product_id)
+		REFERENCES Product(product_id)
+		ON DELETE CASCADE,
+        
+        
+        CONSTRAINT fk_supplier_id
+		FOREIGN KEY (supplier_id)
+		REFERENCES Supplier (supplier_id)
+		ON DELETE CASCADE
+	);
+
+CREATE TABLE Region (
+  region_id VARCHAR(8) NOT NULL UNIQUE   PRIMARY KEY,
+  name VARCHAR(15) NOT NULL
+);
+
+CREATE TABLE Supplier_Region_Business_Unit (
+  supplier_id 		VARCHAR(8)		 NOT NULL         PRIMARY KEY,
+  region_id VARCHAR(8) NOT NULL,
+  business_unit_id VARCHAR(8) NOT NULL,
+  CONSTRAINT fk_supplier_region_business_unit_supplier_id
+    FOREIGN KEY (supplier_id)
+    REFERENCES Supplier (supplier_id)
+    ON DELETE CASCADE,
+  CONSTRAINT fk_supplier_region_business_unit_region_id
+    FOREIGN KEY (region_id)
+    REFERENCES Region (region_id)
+    ON DELETE CASCADE,
+  CONSTRAINT fk_supplier_region_business_unit_business_unit_id
+    FOREIGN KEY (business_unit_id)
+    REFERENCES Business_unit (business_unit_id)
+    ON DELETE CASCADE
+);
