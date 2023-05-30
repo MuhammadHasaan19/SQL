@@ -54,3 +54,31 @@ USE bankSchema;
     on  br.bank_id= br.bank_id
     where b.bank_name like  'M%';
     
+   # Task 6:
+# Write a query to display loan account number of all 
+# the customers whose name starts with ‘I’ and end with ‘n’.
+    select c.name,l.Account_number
+    from   loanaccounts as l
+    join  customer  as c
+    on   l.customer_id=c.customer_id 
+    where c.name like  'I%n' ;
+# Task 7:
+# Write a query to display employee name and transactions amount of
+# all the employees. If an employee has not done any transaction, 
+# then his transaction amount should be NULL.
+ select e.name,t.transaction_id 
+    from   employee  as e
+    join transaction as t
+    on  e.eid = t.eid;
+
+# Task 8:
+ # Display the name and address of the customers along with their
+ # branch address and bank name.
+ select c.name,c.Address
+    from   customer  as c
+    join branch  as br
+    on  e.branch_id= br.branch_id
+    join bank  as b
+    on  br.bank_id= br.bank_id
+    where b.bank_name like  'M%';
+    
