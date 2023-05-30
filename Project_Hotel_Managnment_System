@@ -1,0 +1,14 @@
+DROP DATABASE Hotel_Managnment_System; 
+CREATE DATABASE  Hotel_Managnment_System; 
+USE  Hotel_Managnment_System; 
+SET SQL_SAFE_UPDATE=0;
+
+#  ------ Creation of Table -----
+
+CREATE TABLE  HOTEL(
+Hotel_Name varchar(256) NOT NULL,
+Location varchar(256) NOT NULL,
+Number_of_Room int,
+PRIMARY KEY( Hotel_Name)
+
+);
