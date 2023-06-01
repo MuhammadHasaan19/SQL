@@ -1,4 +1,4 @@
-DROP DATABASE Hotel_Managnment_System; 
+#DROP DATABASE Hotel_Managnment_System; 
 CREATE DATABASE  Hotel_Managnment_System; 
 USE  Hotel_Managnment_System; 
 SET SQL_SAFE_UPDATE=0;
@@ -13,8 +13,59 @@ PRIMARY KEY( Hotel_Name)
 
 );
 CREATE TABLE GUEST(
+Guest_id INT NOT NULL AUTO_INCREMENT,
 Guest_Nmae varchar(266) NOT NULL,
 Room_type varchar(266),
-Phone_Number varchar(266) not null,
-Email_Adress varchar(266) 
+Phone_Number varchar(10) not null,
+Email_Adress varchar(266),
+Paynment_Inform varchar(266) not null,
+Adress varchar(266) not null,
+  PRIMARY KEY (Guest_id)
+
 );
+desc GUEST;
+
+CREATE TABLE BOOKING(
+guest_booked_id INT NOT NULL,
+booking_time int NOT NULL,
+Booking_date DATE NOT NULL,
+Total_price INT NOT NULL,
+PRIMARY KEY (guest_booked_id)
+
+);
+
+CREATE TABLE RESERVATION(
+Reservation_id int ,
+Guest_Nmae varchar(266) NOT NULL,
+Room_Reserved varchar(266) not null,
+Check_in DATE NOT NULL,
+Check_out DATE NOT NULL,
+Total_Cost int,
+PRIMARY KEY (Reservation_id)
+);
+
+
+CREATE TABLE  EMPLOYEE(
+Employee_Nmae varchar(266) NOT NULL,
+Employee_Positon varchar(266) NOT NULL,
+Contact_Information VARCHAR(266) NOT NULL
+);
+
+CREATE TABLE  Department(
+Department_name VARCHAR(255) NOT NULL,
+Departnmet_id int NOT NULL AUTO_INCREMENT,
+Employee_Positon varchar(266) NOT NULL,
+Contact_Information VARCHAR(266) NOT NULL,
+PRIMARY KEY (Departnmet_id)
+);
+
+CREATE TABLE  Room(
+Room_id int NOT NULL AUTO_INCREMENT,
+Room_typee varchar(266) NOT NULL,
+Occupancy_capacity VARCHAR(266) NOT NULL,
+ Price_per_Night INT NOT NULL,
+ PRIMARY KEY (Room_id)
+
+);
+
+
