@@ -74,12 +74,12 @@ Occupancy_capacity VARCHAR(266) NOT NULL,
 #      ================     Hotel Table     =================
 INSERT INTO HOTEL (Hotel_Name, Location, Number_of_Room)VALUES ('Grand Hotel', 'New York City', 1000);
 INSERT INTO HOTEL (Hotel_Name, Location, Number_of_Room)VALUES ('Hilton Hotel', 'Los Angeles', 500);
-INSERT INTO HOTEL (Hotel_Name, Location, Number_of_Room)VALUES ('Marriott Hotel', 'Chicago', 250);
-INSERT INTO HOTEL (Hotel_Name, Location, Number_of_Room)VALUES ('Sheraton Hotel', 'San Francisco', 100);
-INSERT INTO HOTEL (Hotel_Name, Location, Number_of_Room)VALUES ('W Hotel', 'Miami', 75);
-INSERT INTO HOTEL (Hotel_Name, Location, Number_of_Room)VALUES ('The Ritz-Carlton', 'Boston', 50);
-INSERT INTO HOTEL (Hotel_Name, Location, Number_of_Room)VALUES ('Four Seasons Hotel', 'Dallas', 25);
-INSERT INTO HOTEL (Hotel_Name, Location, Number_of_Room)VALUES ('Trump International Hotel', 'Washington, D.C.', 10);
+INSERT INTO HOTEL (Hotel_Name, Location, Number_of_Room)VALUES ('Marriott Hotel', 'Chicago', 2500);
+INSERT INTO HOTEL (Hotel_Name, Location, Number_of_Room)VALUES ('Margilaa Hills Hotel', 'Islamabad', 1000);
+INSERT INTO HOTEL (Hotel_Name, Location, Number_of_Room)VALUES ('W Hotel', 'Miami', 750);
+INSERT INTO HOTEL (Hotel_Name, Location, Number_of_Room)VALUES ('Muree Peak Hotel', 'Muree', 5000);
+INSERT INTO HOTEL (Hotel_Name, Location, Number_of_Room)VALUES ('Four Seasons Hotel', 'Swat', 1200);
+INSERT INTO HOTEL (Hotel_Name, Location, Number_of_Room)VALUES ('Trump International Hotel', 'Washington, D.C.', 1000);
 
 
 
