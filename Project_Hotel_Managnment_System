@@ -46,14 +46,15 @@ PRIMARY KEY (Reservation_id)
 
 
 CREATE TABLE  EMPLOYEE(
+Employee_id INT NOT NULL AUTO_INCREMENT,
 Employee_Nmae varchar(266) NOT NULL,
 Employee_Positon varchar(266) NOT NULL,
 Contact_Information VARCHAR(266) NOT NULL
 );
 
 CREATE TABLE  Department(
-Department_name VARCHAR(255) NOT NULL,
 Departnmet_id int NOT NULL AUTO_INCREMENT,
+Department_name VARCHAR(255) NOT NULL,
 Employee_Positon varchar(266) NOT NULL,
 Contact_Information VARCHAR(266) NOT NULL,
 PRIMARY KEY (Departnmet_id)
@@ -66,6 +67,134 @@ Occupancy_capacity VARCHAR(266) NOT NULL,
  Price_per_Night INT NOT NULL,
  PRIMARY KEY (Room_id)
 
-);
+); 
+
+#1-----***************** Insert Command ******************---------
+
+#      ================     Hotel Table     =================
+INSERT INTO HOTEL (Hotel_Name, Location, Number_of_Room)VALUES ('Grand Hotel', 'New York City', 1000);
+INSERT INTO HOTEL (Hotel_Name, Location, Number_of_Room)VALUES ('Hilton Hotel', 'Los Angeles', 500);
+INSERT INTO HOTEL (Hotel_Name, Location, Number_of_Room)VALUES ('Marriott Hotel', 'Chicago', 250);
+INSERT INTO HOTEL (Hotel_Name, Location, Number_of_Room)VALUES ('Sheraton Hotel', 'San Francisco', 100);
+INSERT INTO HOTEL (Hotel_Name, Location, Number_of_Room)VALUES ('W Hotel', 'Miami', 75);
+INSERT INTO HOTEL (Hotel_Name, Location, Number_of_Room)VALUES ('The Ritz-Carlton', 'Boston', 50);
+INSERT INTO HOTEL (Hotel_Name, Location, Number_of_Room)VALUES ('Four Seasons Hotel', 'Dallas', 25);
+INSERT INTO HOTEL (Hotel_Name, Location, Number_of_Room)VALUES ('Trump International Hotel', 'Washington, D.C.', 10);
+
+
+
+#      ================     Guest Table     =================
+
+INSERT INTO GUEST (Guest_id, Guest_Name, Room_type, Phone_Number, Email_Address, Payment_Information, Address)
+VALUES
+(1, 'John Smith', 'Deluxe', '123-456-7890', 'john.smith@email.com', 'Credit Card: 1234-5678-9012-3456', '123 Main Street, Anytown, USA'),
+(2, 'Jane Doe', 'Single_Bed Room ', '555-555-5555', 'jane.doe@email.com', 'Debit Card: 4567-8901-2345-6789', '456 Elm Street, Anytown, USA'),
+(3, 'Michael Jones', 'Single_Bed Room', '987-654-3210', 'michael.jones@email.com', 'PayPal: michaeljones@paypal.com', '789 Oak Street, Anytown, USA'),
+(4, 'Sarah Williams', 'Family Room', '321-098-7654', 'sarah.williams@email.com', 'Cash', '101 Pine Street, Anytown, USA'),
+(5, 'David Green', 'Double_Bed Room', '876-543-2109', 'david.green@email.com', 'Traveler Cheque', '202 Main Street, Anytown, USA'),
+(6, 'Sally Brown', 'Deluxe', '111-222-3333', 'sally.brown@email.com', 'Credit Card: 4567-8901-2345-6789', '321 Elm Street, Anytown, USA'),
+(7, 'Tom Hanks', 'Standard', '444-555-6666', 'tom.hanks@email.com', 'Debit Card: 1234-5678-9012-3456', '789 Oak Street, Anytown, USA'),
+(8, 'Keanu Reeves', 'Suite', '999-888-7777', 'keanu.reeves@email.com', 'PayPal: keanureaves@paypal.com', '101 Pine Street, Anytown, USA'),
+(9, 'Jennifer Lawrence', 'Family Room', '777-666-5555', 'jennifer.lawrence@email.com', 'Cash', '202 Main Street, Anytown, USA'),
+(10, 'George Clooney', 'Accessible Room', '666-555-4444', 'george.clooney@email.com', 'Traveler Cheque', '303 Main Street, Anytown, USA');
+
+
+#      ================     BOOKING Table     =================
+
+INSERT INTO BOOKING (guest_booked_id, booking_time, Booking_date, Total_price)VALUES (1, '2023-06-01 10:00:00', '2023-06-03', 1000);
+INSERT INTO BOOKING (guest_booked_id, booking_time, Booking_date, Total_price)VALUES (2, '2023-06-05 12:00:00', '2023-06-07', 500);
+INSERT INTO BOOKING (guest_booked_id, booking_time, Booking_date, Total_price)VALUES (3, '2023-06-08 14:00:00', '2023-06-10', 2500);
+INSERT INTO BOOKING (guest_booked_id, booking_time, Booking_date, Total_price)VALUES (4, '2023-06-11 16:00:00', '2023-06-13', 1000);
+INSERT INTO BOOKING (guest_booked_id, booking_time, Booking_date, Total_price)VALUES (5, '2023-06-14 18:00:00', '2023-06-16', 750);
+INSERT INTO BOOKING (guest_booked_id, booking_time, Booking_date, Total_price)VALUES (6, '2023-06-17 20:00:00', '2023-06-19', 500);
+INSERT INTO BOOKING (guest_booked_id, booking_time, Booking_date, Total_price)VALUES (7, '2023-06-20 22:00:00', '2023-06-22', 2500);
+INSERT INTO BOOKING (guest_booked_id, booking_time, Booking_date, Total_price)VALUES (8, '2023-06-23 24:00:00', '2023-06-25', 1000);
+INSERT INTO BOOKING (guest_booked_id, booking_time, Booking_date, Total_price)VALUES (9, '2023-06-26 02:00:00', '2023-06-28', 750);
+INSERT INTO BOOKING (guest_booked_id, booking_time, Booking_date, Total_price)VALUES (9, '2023-06-29 05:00:00', '2023-06-30', 550);
+
+#      ================     RESERVATION Table     =================:
+
+INSERT INTO RESERVATION (Reservation_id, Guest_Name, Room_Reserved, Check_in, Check_out, Total_Cost)
+VALUES (1, 'John Smith', 'Deluxe', '2023-06-01', '2023-06-03', 1000);
+INSERT INTO RESERVATION (Reservation_id, Guest_Name, Room_Reserved, Check_in, Check_out, Total_Cost)
+VALUES (2, 'Jane Doe', 'Standard', '2023-06-05', '2023-06-07', 500);
+INSERT INTO RESERVATION (Reservation_id, Guest_Name, Room_Reserved, Check_in, Check_out, Total_Cost)
+VALUES (3, 'Michael Jones', 'Suite', '2023-06-10', '2023-06-12', 1500);
+INSERT INTO RESERVATION (Reservation_id, Guest_Name, Room_Reserved, Check_in, Check_out, Total_Cost)
+VALUES (4, 'Sarah Williams', 'Family Room', '2023-06-15', '2023-06-17', 2000);
+INSERT INTO RESERVATION (Reservation_id, Guest_Name, Room_Reserved, Check_in, Check_out, Total_Cost)
+VALUES (5, 'David Green', 'Accessible Room', '2023-06-20', '2023-06-22', 1200);
+INSERT INTO RESERVATION (Reservation_id, Guest_Name, Room_Reserved, Check_in, Check_out, Total_Cost)
+VALUES (6, 'Mary Johnson', 'Deluxe', '2023-06-25', '2023-06-27', 1000);
+INSERT INTO RESERVATION (Reservation_id, Guest_Name, Room_Reserved, Check_in, Check_out, Total_Cost)
+VALUES (7, 'Peter Jones', 'Standard', '2023-06-30', '2023-07-02', 500);
+INSERT INTO RESERVATION (Reservation_id, Guest_Name, Room_Reserved, Check_in, Check_out, Total_Cost)
+VALUES (8, 'Susan Williams', 'Suite', '2023-07-05', '2023-07-07', 1500);
+INSERT INTO RESERVATION (Reservation_id, Guest_Name, Room_Reserved, Check_in, Check_out, Total_Cost)
+VALUES (9, 'David Green', 'Family Room', '2023-07-10', '2023-07-12', 2000);
+INSERT INTO RESERVATION (Reservation_id, Guest_Name, Room_Reserved, Check_in, Check_out, Total_Cost)
+VALUES (10, 'Olipop Smith ', 'Family Room', '2023-03-04', '2023-03-08', 2000);
+#      ================      EMPLOYEE  Table     =================:
+
+INSERT INTO EMPLOYEE (Employee_id, Employee_Name, Employee_Position, Contact_Information)
+VALUES (1, 'John Smith', 'Front Desk Clerk', 'john.smith@email.com');
+
+INSERT INTO EMPLOYEE (Employee_id, Employee_Name, Employee_Position, Contact_Information)
+VALUES (2, 'Jane Doe', 'Housekeeper', 'jane.doe@email.com');
+
+INSERT INTO EMPLOYEE (Employee_id, Employee_Name, Employee_Position, Contact_Information)
+VALUES (3, 'Michael Jones', 'Waiter', 'michael.jones@email.com');
+
+INSERT INTO EMPLOYEE (Employee_id, Employee_Name, Employee_Position, Contact_Information)
+VALUES (4, 'Sarah Williams', 'Bartender', 'sarah.williams@email.com');
+
+INSERT INTO EMPLOYEE (Employee_id, Employee_Name, Employee_Position, Contact_Information)
+VALUES (5, 'David Green', 'Bellhop', 'david.green@email.com');
+
+INSERT INTO EMPLOYEE (Employee_id, Employee_Name, Employee_Position, Contact_Information)
+VALUES (6, 'Susan Brown', 'Front Desk Manager', 'susan.brown@email.com');
+
+INSERT INTO EMPLOYEE (Employee_id, Employee_Name, Employee_Position, Contact_Information)
+VALUES (7, 'Peter White', 'Housekeeping Manager', 'peter.white@email.com');
+
+INSERT INTO EMPLOYEE (Employee_id, Employee_Name, Employee_Position, Contact_Information)
+VALUES (8, 'Thomas Black', 'Restaurant Manager', 'thomas.black@email.com');
+
+INSERT INTO EMPLOYEE (Employee_id, Employee_Name, Employee_Position, Contact_Information)
+VALUES (9, 'Mary Green', 'Bar Manager', 'mary.green@email.com');
+
+INSERT INTO EMPLOYEE (Employee_id, Employee_Name, Employee_Position, Contact_Information)
+VALUES (10, 'John Blue', 'Concierge', 'john.blue@email.com');
+
+
+#      ================       DEPARTMENT  Table     =================:
+
+INSERT INTO DEPARTMENT (Department_id,Department_name,  Employee_Positon, Contact_Information)VALUES (1,'Front Desk',  'Front Desk Clerk', 'frontdesk@hotel.com');
+INSERT INTO DEPARTMENT (Department_id,Department_name,  Employee_Positon, Contact_Information)VALUES (2,'Housekeeping',  'Housekeeper', 'housekeeping@hotel.com');
+INSERT INTO DEPARTMENT (Department_id,Department_name,  Employee_Positon, Contact_Information)VALUES (3,'Restaurant',  'Waiter', 'restaurant@hotel.com');
+INSERT INTO DEPARTMENT (Department_id,Department_name,  Employee_Positon, Contact_Information)VALUES (4,'Bar',  'Bartender', 'bar@hotel.com');
+INSERT INTO DEPARTMENT (Department_id,Department_name,  Employee_Positon, Contact_Information)VALUES (5,'Bellhop',  'Bellhop', 'bellhop@hotel.com');
+INSERT INTO DEPARTMENT (Department_id,Department_name,  Employee_Positon, Contact_Information)VALUES (6,'Front Desk Manager',  'Front Desk Manager', 'frontdeskmanager@hotel.com');
+INSERT INTO DEPARTMENT (Department_id,Department_name,  Employee_Positon, Contact_Information)VALUES (7,'Housekeeping Manager',  'Housekeeping Manager', 'housekeepingmanager@hotel.com');
+INSERT INTO DEPARTMENT (Department_id,Department_name,  Employee_Positon, Contact_Information)VALUES (8,'Restaurant Manager',  'Restaurant Manager', 'restaurantmanager@hotel.com');
+INSERT INTO DEPARTMENT (Department_id,Department_name,  Employee_Positon, Contact_Information)VALUES (9,'Bar Manager',  'Bar Manager', 'barmanager@hotel.com');
+INSERT INTO DEPARTMENT (Department_id,Department_name, Employee_Positon, Contact_Information)VALUES (10,'Concierge', 'Concierge', 'concierge@hotel.com');
+
+#      ================       ROOM Table     =================: 
+
+INSERT INTO ROOM (Room_id, Room_typee, Occupancy_capacity, Price_per_Night)VALUES (1, 'Deluxe', 2, 200);
+INSERT INTO ROOM (Room_id, Room_typee, Occupancy_capacity, Price_per_Night)VALUES (2, 'Standard', 2, 150);
+INSERT INTO ROOM (Room_id, Room_typee, Occupancy_capacity, Price_per_Night)VALUES (3, 'Suite', 4, 300);
+INSERT INTO ROOM (Room_id, Room_typee, Occupancy_capacity, Price_per_Night)VALUES (4, 'Family Room', 6, 400);
+INSERT INTO ROOM (Room_id, Room_typee, Occupancy_capacity, Price_per_Night)VALUES (5, 'Accessible Room', 2, 175);
+INSERT INTO ROOM (Room_id, Room_typee, Occupancy_capacity, Price_per_Night)VALUES (6, 'Deluxe with Jacuzzi', 2, 250);
+INSERT INTO ROOM (Room_id, Room_typee, Occupancy_capacity, Price_per_Night)VALUES (7, 'Standard with Balcony', 2, 175);
+INSERT INTO ROOM (Room_id, Room_typee, Occupancy_capacity, Price_per_Night)VALUES (8, 'Suite with Ocean View', 4, 325);
+INSERT INTO ROOM (Room_id, Room_typee, Occupancy_capacity, Price_per_Night)VALUES (9, 'Family Room with Kitchenette', 6, 450);
+INSERT INTO ROOM (Room_id, Room_typee, Occupancy_capacity, Price_per_Night)VALUES (10, 'Accessible Room with Sliding Door', 2, 195);
+
+
+
+
 
 
