@@ -156,6 +156,9 @@ INSERT INTO BOOKING (guest_booked_id, booking_time, Booking_date, Total_price)VA
  UPDATE Booking SET Total_price = 5000 WHERE guest_booked_id =8 ;
  UPDATE Booking SET Booking_date = '2023-02-09' WHERE guest_booked_id = 10;
 
+ ALTER TABLE Booking ADD COLUMN room_number INT;
+ ALTER TABLE Booking CHANGE COLUMN booking_date booking_date DATETIME;
+ ALTER TABLE Booking ADD COLUMN status VARCHAR(255);
 
 
 #      ================     RESERVATION Table     =================:
@@ -187,6 +190,9 @@ VALUES (10, 'Olipop Smith ', 'Family Room', '2023-03-04', '2023-03-08', 2000);
  UPDATE RESERVATION SET Check_out = '2023-06-25' WHERE Reservation_id = 7;
  UPDATE RESERVATION SET Total_Cost = 1000 WHERE Reservation_id = 10;
 
+ ALTER TABLE Reservation ADD COLUMN `status` VARCHAR(255) NOT NULL;
+ ALTER TABLE Reservation CHANGE COLUMN `Check_in` `Check_in_Date` DATE NOT NULL;
+ ALTER TABLE Reservation CHANGE COLUMN `Check_out` `Check_out_Date` DATE NOT NULL;
 
 #      ================      EMPLOYEE  Table     =================:
 
@@ -226,7 +232,9 @@ VALUES (10, 'John Blue', 'Concierge', 'john.blue@email.com');
  UPDATE EMPLOYEE SET Employee_Name=  'Thomas Roger' WHERE Employee_id = 6;
  UPDATE EMPLOYEE SET  Contact_Information= 'Mary.Green456@email.com' WHERE Employee_id = 9;
 
-
+ ALTER TABLE EMPLOYEE ADD COLUMN Department VARCHAR(255);
+ ALTER TABLE EMPLOYEE ADD COLUMN Salary INT;
+ ALTER TABLE EMPLOYEE ADD COLUMN DOB DATE;
 
 #      ================       DEPARTMENT  Table     =================:
 
@@ -247,6 +255,10 @@ INSERT INTO DEPARTMENT (Department_id,Department_name, Employee_Positon, Contact
  UPDATE Department SET Department_name = 'Marketing' WHERE Departnmet_id = 7;
  UPDATE Department SET Employee_Positon = 'Director' WHERE Departnmet_id = 10;
 
+ ALTER TABLE Department ADD COLUMN Manager_Name VARCHAR(255);
+ ALTER TABLE Department CHANGE COLUMN Location Location_ID INT;
+ ALTER TABLE Department DROP COLUMN ADMRDEPT;
+
 #      ================       ROOM Table     =================: 
 
 INSERT INTO ROOM (Room_id, Room_typee, Occupancy_capacity, Price_per_Night)VALUES (1, 'Deluxe', 2, 200);
@@ -266,7 +278,9 @@ INSERT INTO ROOM (Room_id, Room_typee, Occupancy_capacity, Price_per_Night)VALUE
  UPDATE Room SET Occupancy_capacity = 4 WHERE Room_id = 6;
  UPDATE Room SET Room_type = 'Standard with Balcony' WHERE Room_id = 9;
 
-
+ ALTER TABLE Room ADD COLUMN Room_Number INT NOT NULL;
+ ALTER TABLE Room ADD COLUMN Bed_Type VARCHAR(255) NOT NULL;
+ ALTER TABLE Room ADD COLUMN Room_View VARCHAR(255);
 
 
 
