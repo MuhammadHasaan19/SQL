@@ -106,6 +106,10 @@ UPDATE Hotel
 SET Location = 'Riyad'
 WHERE Hotel_Name = 'Four Seasons Hotel';
 
+ALTER TABLE Hotel ADD COLUMN Star_Rating INT;
+ ALTER TABLE Hotel ADD COLUMN Amenities VARCHAR(256);
+ ALTER TABLE Hotel ADD COLUMN Review_Score INT;
+
 
 
 #      ================     Guest Table     =================
@@ -129,6 +133,9 @@ VALUES
  UPDATE Guest SET Email_Address = 'Steven.smith@example.com' WHERE Guest_id = 1;
  UPDATE Guest SET Payment_Information = 'Paypal' WHERE Guest_id = 5;
 
+ ALTER TABLE Guest ADD COLUMN Age INT;
+ ALTER TABLE Guest CHANGE COLUMN Phone_Number Phone_Number VARCHAR(20);
+ ALTER TABLE Guest DROP COLUMN Payment_Information;
 
 #      ================     BOOKING Table     =================
 
