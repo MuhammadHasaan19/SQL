@@ -10,6 +10,7 @@ Hotel_Name varchar(256) NOT NULL,
 Location varchar(256) NOT NULL,
 Number_of_Room int,
 PRIMARY KEY( Hotel_Name)
+select * from HOTEL;
 
 );
 CREATE TABLE GUEST(
@@ -24,6 +25,7 @@ Adress varchar(266) not null,
 
 );
 desc GUEST;
+select * from Guest
 
 CREATE TABLE BOOKING(
 guest_booked_id INT NOT NULL,
