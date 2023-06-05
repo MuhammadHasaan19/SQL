@@ -54,6 +54,7 @@ Employee_Nmae varchar(266) NOT NULL,
 Employee_Positon varchar(266) NOT NULL,
 Contact_Information VARCHAR(266) NOT NULL
 );
+select * from  EMPLOYEE;
 
 CREATE TABLE  Department(
 Departnmet_id int NOT NULL AUTO_INCREMENT,
