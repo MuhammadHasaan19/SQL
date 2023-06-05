@@ -35,6 +35,7 @@ Total_price INT NOT NULL,
 PRIMARY KEY (guest_booked_id)
 
 );
+select * from BOOKING;
 
 CREATE TABLE RESERVATION(
 Reservation_id int ,
@@ -45,7 +46,7 @@ Check_out DATE NOT NULL,
 Total_Cost int,
 PRIMARY KEY (Reservation_id)
 );
-
+select * from RESERVATION;
 
 CREATE TABLE  EMPLOYEE(
 Employee_id INT NOT NULL AUTO_INCREMENT,
