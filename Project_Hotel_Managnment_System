@@ -79,10 +79,10 @@ Occupancy_capacity VARCHAR(266) NOT NULL,
 INSERT INTO HOTEL (Hotel_Name, Location, Number_of_Room)VALUES ('Grand Hotel', 'New York City', 1000);
 INSERT INTO HOTEL (Hotel_Name, Location, Number_of_Room)VALUES ('Hilton Hotel', 'Los Angeles', 500);
 INSERT INTO HOTEL (Hotel_Name, Location, Number_of_Room)VALUES ('Marriott Hotel', 'Chicago', 250);
-INSERT INTO HOTEL (Hotel_Name, Location, Number_of_Room)VALUES ('Sheraton Hotel', 'San Francisco', 100);
+INSERT INTO HOTEL (Hotel_Name, Location, Number_of_Room)VALUES ('Shawaton Hotel', 'Los Angales', 100);
 INSERT INTO HOTEL (Hotel_Name, Location, Number_of_Room)VALUES ('W Hotel', 'Miami', 75);
 INSERT INTO HOTEL (Hotel_Name, Location, Number_of_Room)VALUES ('The Ritz-Carlton', 'Boston', 50);
-INSERT INTO HOTEL (Hotel_Name, Location, Number_of_Room)VALUES ('Four Seasons Hotel', 'Dallas', 25);
+INSERT INTO HOTEL (Hotel_Name, Location, Number_of_Room)VALUES ('Four Seasons Hotel', 'Istanbol', 25);
 INSERT INTO HOTEL (Hotel_Name, Location, Number_of_Room)VALUES ('Trump International Hotel', 'Washington, D.C.', 10);
 
 # Update the location of the hotel.
@@ -266,13 +266,13 @@ INSERT INTO DEPARTMENT (Department_id,Department_name, Employee_Positon, Contact
 #      ================       ROOM Table     =================: 
 
 INSERT INTO ROOM (Room_id, Room_typee, Occupancy_capacity, Price_per_Night)VALUES (1, 'Deluxe', 2, 200);
-INSERT INTO ROOM (Room_id, Room_typee, Occupancy_capacity, Price_per_Night)VALUES (2, 'Standard', 2, 150);
+INSERT INTO ROOM (Room_id, Room_typee, Occupancy_capacity, Price_per_Night)VALUES (2, 'Standard', 2, 1500);
 INSERT INTO ROOM (Room_id, Room_typee, Occupancy_capacity, Price_per_Night)VALUES (3, 'Suite', 4, 300);
 INSERT INTO ROOM (Room_id, Room_typee, Occupancy_capacity, Price_per_Night)VALUES (4, 'Family Room', 6, 400);
 INSERT INTO ROOM (Room_id, Room_typee, Occupancy_capacity, Price_per_Night)VALUES (5, 'Accessible Room', 2, 175);
 INSERT INTO ROOM (Room_id, Room_typee, Occupancy_capacity, Price_per_Night)VALUES (6, 'Deluxe with Jacuzzi', 2, 250);
-INSERT INTO ROOM (Room_id, Room_typee, Occupancy_capacity, Price_per_Night)VALUES (7, 'Standard with Balcony', 2, 175);
-INSERT INTO ROOM (Room_id, Room_typee, Occupancy_capacity, Price_per_Night)VALUES (8, 'Suite with Ocean View', 4, 325);
+INSERT INTO ROOM (Room_id, Room_typee, Occupancy_capacity, Price_per_Night)VALUES (7, 'Standard with Balcony', 2, 1199);
+INSERT INTO ROOM (Room_id, Room_typee, Occupancy_capacity, Price_per_Night)VALUES (8, 'Suite with Ocean View', 4, 3299);
 INSERT INTO ROOM (Room_id, Room_typee, Occupancy_capacity, Price_per_Night)VALUES (9, 'Family Room with Kitchenette', 6, 450);
 INSERT INTO ROOM (Room_id, Room_typee, Occupancy_capacity, Price_per_Night)VALUES (10, 'Accessible Room with Sliding Door', 2, 195);
 
