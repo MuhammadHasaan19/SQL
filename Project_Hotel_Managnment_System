@@ -10,9 +10,8 @@ Hotel_Name varchar(256) NOT NULL,
 Location varchar(256) NOT NULL,
 Number_of_Room int,
 PRIMARY KEY( Hotel_Name)
-select * from HOTEL;
-
 );
+
 CREATE TABLE GUEST(
 Guest_id INT NOT NULL AUTO_INCREMENT,
 Guest_Nmae varchar(266) NOT NULL,
@@ -24,8 +23,11 @@ Adress varchar(266) not null,
   PRIMARY KEY (Guest_id)
 
 );
-desc GUEST;
-select * from Guest
+
+ALTER TABLE GUEST
+ADD CONSTRAINT FK_GUEST_Room_type
+FOREIGN KEY (Room_type)
+REFERENCES Room(Room_typee);
 
 CREATE TABLE BOOKING(
 guest_booked_id INT NOT NULL,
@@ -35,7 +37,11 @@ Total_price INT NOT NULL,
 PRIMARY KEY (guest_booked_id)
 
 );
-select * from BOOKING;
+ALTER TABLE BOOKING
+ADD CONSTRAINT FK_BOOKING_guest_booked_id
+FOREIGN KEY (guest_booked_id)
+REFERENCES GUEST(Guest_id);
+
 
 CREATE TABLE RESERVATION(
 Reservation_id int ,
@@ -46,7 +52,11 @@ Check_out DATE NOT NULL,
 Total_Cost int,
 PRIMARY KEY (Reservation_id)
 );
-select * from RESERVATION;
+ALTER TABLE RESERVATION
+ADD CONSTRAINT FK_RESERVATION_Guest_Nmae
+FOREIGN KEY (Guest_Nmae)
+REFERENCES GUEST(Guest_Nmae);
+
 
 CREATE TABLE  EMPLOYEE(
 Employee_id INT NOT NULL AUTO_INCREMENT,
@@ -54,7 +64,11 @@ Employee_Nmae varchar(266) NOT NULL,
 Employee_Positon varchar(266) NOT NULL,
 Contact_Information VARCHAR(266) NOT NULL
 );
-select * from  EMPLOYEE;
+ALTER TABLE EMPLOYEE
+ADD CONSTRAINT FK_EMPLOYEE_Employee_Positon
+FOREIGN KEY (Employee_Positon)
+REFERENCES Department(Employee_Positon);
+
 
 CREATE TABLE  Department(
 Departnmet_id int NOT NULL AUTO_INCREMENT,
@@ -63,6 +77,11 @@ Employee_Positon varchar(266) NOT NULL,
 Contact_Information VARCHAR(266) NOT NULL,
 PRIMARY KEY (Departnmet_id)
 );
+ALTER TABLE Department
+ADD CONSTRAINT FK_DEPARTMENT_Employee_Positon
+FOREIGN KEY (Employee_Positon)
+REFERENCES EMPLOYEE(Employee_Positon);
+
 
 CREATE TABLE  Room(
 Room_id int NOT NULL AUTO_INCREMENT,
@@ -72,6 +91,11 @@ Occupancy_capacity VARCHAR(266) NOT NULL,
  PRIMARY KEY (Room_id)
 
 ); 
+ALTER TABLE Room
+ADD CONSTRAINT FK_ROOM_Room_typee
+FOREIGN KEY (Room_typee)
+REFERENCES GUEST(Room_type);
+
 
 #1-----***************** Insert Command ******************---------
 
