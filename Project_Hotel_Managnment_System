@@ -1,3 +1,5 @@
+                       Hotel Managnment System     
+
 #DROP DATABASE Hotel_Managnment_System; 
 CREATE DATABASE  Hotel_Managnment_System; 
 USE  Hotel_Managnment_System; 
