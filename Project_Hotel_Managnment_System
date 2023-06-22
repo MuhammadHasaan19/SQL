@@ -172,7 +172,7 @@ VALUES
 (4, 'Sarah Williams', 'Family Room', '321-098-7654', 'sarah.williams@email.com', 'Cash', '101 Pine Street, Anytown, USA'),
 (5, 'David Green', 'Double_Bed Room', '876-543-2109', 'david.green@email.com', 'Traveler Cheque', '202 Main Street, Anytown, USA'),
 (6, 'Sally Brown', 'Deluxe', '111-222-3333', 'sally.brown@email.com', 'Credit Card: 4567-8901-2345-6789', '321 Elm Street, Anytown, USA'),
-(7, 'Tom Hanks', 'Standard', '444-555-6666', 'tom.hanks@email.com', 'Debit Card: 1234-5678-9012-3456', '789 Oak Street, Anytown, USA'),
+(7, 'Tom Hanks', 'Standard', '444-555-6666', 'tom.hanks@email.com', 'Debit Card: 1234-5678-9012-3456', '789 Oak Street, Anytown, USA');
 
  UPDATE Guest SET Guest_Name = 'Steven Smith' WHERE Guest_id = 1;
  UPDATE Guest SET Room_type = 'Deluxe' WHERE Guest_id = 2;
@@ -214,7 +214,6 @@ INSERT INTO RESERVATION (Reservation_id, Guest_Name, Room_Reserved, Check_in, Ch
 VALUES (6, 'Mary Johnson', 'Deluxe', '2023-06-25', '2023-06-27', 1000);
 INSERT INTO RESERVATION (Reservation_id, Guest_Name, Room_Reserved, Check_in, Check_out, Total_Cost)
 VALUES (7, 'Peter Jones', 'Standard', '2023-06-30', '2023-07-02', 500);
-INSERT INTO RESERVATION (Reservation_id, Guest_Name, Room_Reserved, Check_in, Check_out, Total_Cost)
 
  UPDATE RESERVATION SET Guest_Name = 'Smeed Smith' WHERE Reservation_id = 1;
  UPDATE RESERVATION SET Room_Reserved = 'Deluxe' WHERE Reservation_id = 2;
