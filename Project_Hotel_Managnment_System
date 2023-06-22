@@ -1,9 +1,7 @@
-                       Hotel Managnment System     
-
 #DROP DATABASE Hotel_Managnment_System; 
-CREATE DATABASE  Hotel_Managnment_System; 
+#CREATE DATABASE  Hotel_Managnment_System; 
 USE  Hotel_Managnment_System; 
-SET SQL_SAFE_UPDATE=0;
+#SET SQL_SAFE_UPDATE=0;
 
 #  -----------*************** Creation of Table ****************-------------
 
@@ -13,6 +11,10 @@ Location varchar(256) NOT NULL,
 Number_of_Room int,
 PRIMARY KEY( Hotel_Name)
 );
+
+create view hotel_view as
+select * from HOTEL;
+
 ALTER TABLE HOTEL
 ADD CONSTRAINT FK_HOTEL_Hotel_Name
 FOREIGN KEY (Hotel_Name)
@@ -29,6 +31,9 @@ Adress varchar(266) not null,
   PRIMARY KEY (Guest_id)
 
 );
+create view Guest_view as
+select * from GUEST;
+
 
 ALTER TABLE GUEST
 ADD CONSTRAINT FK_GUEST_Room_type
@@ -42,6 +47,10 @@ Booking_date DATE NOT NULL,
 Total_price INT NOT NULL,
 PRIMARY KEY (guest_booked_id)
 );
+create view Booking_view as
+select * from BOOKING;
+
+
 ALTER TABLE BOOKING
 ADD CONSTRAINT FK_BOOKING_guest_booked_id
 FOREIGN KEY (guest_booked_id)
@@ -57,6 +66,11 @@ Check_out DATE NOT NULL,
 Total_Cost int,
 PRIMARY KEY (Reservation_id)
 );
+
+create view Reservation_view as
+select * from RESERVATION;
+
+
 ALTER TABLE RESERVATION
 ADD CONSTRAINT FK_RESERVATION_Guest_Nmae
 FOREIGN KEY (Guest_Nmae)
@@ -69,6 +83,10 @@ Employee_Nmae varchar(266) NOT NULL,
 Employee_Positon varchar(266) NOT NULL,
 Contact_Information VARCHAR(266) NOT NULL
 );
+
+create view Employee_view as
+select * from EMPLOYEE;
+
 ALTER TABLE EMPLOYEE
 ADD CONSTRAINT FK_EMPLOYEE_Employee_Positon
 FOREIGN KEY (Employee_Positon)
@@ -82,6 +100,10 @@ Employee_Positon varchar(266) NOT NULL,
 Contact_Information VARCHAR(266) NOT NULL,
 PRIMARY KEY (Departnmet_id)
 );
+
+create view Depart_view as
+select * from Department;
+
 ALTER TABLE Department
 ADD CONSTRAINT FK_DEPARTMENT_Employee_Positon
 FOREIGN KEY (Employee_Positon)
@@ -95,6 +117,10 @@ Occupancy_capacity VARCHAR(266) NOT NULL,
  Price_per_Night INT NOT NULL,
  PRIMARY KEY (Room_id)
 ); 
+
+create view Room_view as
+select * from Room;
+
 ALTER TABLE Room
 ADD CONSTRAINT FK_ROOM_Room_typee
 FOREIGN KEY (Room_typee)
@@ -262,7 +288,3 @@ INSERT INTO ROOM (Room_id, Room_typee, Occupancy_capacity, Price_per_Night)VALUE
  UPDATE Room SET Price_per_Night = 100 WHERE Room_id = 3;
  UPDATE Room SET Occupancy_capacity = 4 WHERE Room_id = 6;
  UPDATE Room SET Room_type = 'Standard with Balcony' WHERE Room_id = 9;
-
-
-
-
