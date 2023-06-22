@@ -1,131 +1,129 @@
-#DROP DATABASE Hotel_Managnment_System; 
-#CREATE DATABASE  Hotel_Managnment_System; 
+DROP DATABASE Hotel_Managnment_System; 
+CREATE DATABASE  Hotel_Managnment_System; 
 USE  Hotel_Managnment_System; 
 #SET SQL_SAFE_UPDATE=0;
 
 #  -----------*************** Creation of Table ****************-------------
-
+#drop table hotel;
 CREATE TABLE  HOTEL(
 Hotel_Name varchar(256) NOT NULL,
 Location varchar(256) NOT NULL,
 Number_of_Room int,
+Guest_id int,
 PRIMARY KEY( Hotel_Name)
+
 );
-
-create view hotel_view as
-select * from HOTEL;
-
-ALTER TABLE HOTEL
-ADD CONSTRAINT FK_HOTEL_Hotel_Name
-FOREIGN KEY (Hotel_Name)
-REFERENCES GUEST(Guest_Nmae);
-
 CREATE TABLE GUEST(
 Guest_id INT NOT NULL AUTO_INCREMENT,
-Guest_Nmae varchar(266) NOT NULL,
-Room_type varchar(266),
+Guest_Name varchar(266) NOT NULL,
+Room_id int,
 Phone_Number varchar(10) not null,
 Email_Adress varchar(266),
 Paynment_Inform varchar(266) not null,
 Adress varchar(266) not null,
+
   PRIMARY KEY (Guest_id)
 
 );
-create view Guest_view as
-select * from GUEST;
-
-
-ALTER TABLE GUEST
-ADD CONSTRAINT FK_GUEST_Room_type
-FOREIGN KEY (Room_type)
-REFERENCES Room(Room_typee);
-
 CREATE TABLE BOOKING(
 guest_booked_id INT NOT NULL,
 booking_time int NOT NULL,
 Booking_date DATE NOT NULL,
 Total_price INT NOT NULL,
+Guest_id INT ,
 PRIMARY KEY (guest_booked_id)
 );
-create view Booking_view as
-select * from BOOKING;
-
-
-ALTER TABLE BOOKING
-ADD CONSTRAINT FK_BOOKING_guest_booked_id
-FOREIGN KEY (guest_booked_id)
-REFERENCES GUEST(Guest_id);
-
-
 CREATE TABLE RESERVATION(
 Reservation_id int ,
-Guest_Nmae varchar(266) NOT NULL,
+Guest_id int,
 Room_Reserved varchar(266) not null,
 Check_in DATE NOT NULL,
 Check_out DATE NOT NULL,
 Total_Cost int,
 PRIMARY KEY (Reservation_id)
 );
-
-create view Reservation_view as
-select * from RESERVATION;
-
-
-ALTER TABLE RESERVATION
-ADD CONSTRAINT FK_RESERVATION_Guest_Nmae
-FOREIGN KEY (Guest_Nmae)
-REFERENCES GUEST(Guest_Nmae);
-
-
 CREATE TABLE  EMPLOYEE(
-Employee_id INT NOT NULL AUTO_INCREMENT,
-Employee_Nmae varchar(266) NOT NULL,
+Employee_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+Employee_Name varchar(266) NOT NULL,
 Employee_Positon varchar(266) NOT NULL,
-Contact_Information VARCHAR(266) NOT NULL
+Contact_Information VARCHAR(266) NOT NULL,
+Departnmet_id int
 );
-
-create view Employee_view as
-select * from EMPLOYEE;
-
-ALTER TABLE EMPLOYEE
-ADD CONSTRAINT FK_EMPLOYEE_Employee_Positon
-FOREIGN KEY (Employee_Positon)
-REFERENCES Department(Employee_Positon);
-
-
 CREATE TABLE  Department(
 Departnmet_id int NOT NULL AUTO_INCREMENT,
 Department_name VARCHAR(255) NOT NULL,
-Employee_Positon varchar(266) NOT NULL,
 Contact_Information VARCHAR(266) NOT NULL,
 PRIMARY KEY (Departnmet_id)
 );
-
-create view Depart_view as
-select * from Department;
-
-ALTER TABLE Department
-ADD CONSTRAINT FK_DEPARTMENT_Employee_Positon
-FOREIGN KEY (Employee_Positon)
-REFERENCES EMPLOYEE(Employee_Positon);
-
-
 CREATE TABLE  Room(
 Room_id int NOT NULL AUTO_INCREMENT,
-Room_typee varchar(266) NOT NULL,
+Room_type varchar(266) NOT NULL,
 Occupancy_capacity VARCHAR(266) NOT NULL,
  Price_per_Night INT NOT NULL,
  PRIMARY KEY (Room_id)
 ); 
 
-create view Room_view as
-select * from Room;
+#------------***************** Alter Command Add Foreign Key ******************------------
 
-ALTER TABLE Room
+ALTER TABLE HOTEL
+ADD CONSTRAINT FK_HOTEL_Hotel_Name
+FOREIGN KEY (Guest_id)REFERENCES GUEST(Guest_id);
+
+ALTER TABLE GUEST
+ADD CONSTRAINT FK_GUEST_Room_type
+FOREIGN KEY (Room_id)REFERENCES Room(Room_id);
+
+ALTER TABLE BOOKING
+ADD CONSTRAINT FK_BOOKING_guest_booked_id
+FOREIGN KEY (guest_booked_id)REFERENCES GUEST(Guest_id);
+
+ALTER TABLE RESERVATION
+ADD CONSTRAINT FK_RESERVATION_Guest_Nmae
+FOREIGN KEY (Guest_id)REFERENCES GUEST(Guest_id);
+
+ALTER TABLE EMPLOYEE
+ADD CONSTRAINT FK_EMPLOYEE_Employee_Positon
+FOREIGN KEY (Departnmet_id)REFERENCES Department(Departnmet_id);
+
+ALTER TABLE Guest
 ADD CONSTRAINT FK_ROOM_Room_typee
-FOREIGN KEY (Room_typee)
-REFERENCES GUEST(Room_type);
+FOREIGN KEY (Room_id)REFERENCES Room(Room_id);
 
+#------------***************** Table and Views ******************------------
+
+create view hotel_view as
+select Hotel_Name, Location from HOTEL;
+
+select * from hotel_view;
+
+create view Guest_view as
+select  Guest_id,Guest_Name,Phone_Number from GUEST;
+
+select * from Guest_view;
+
+
+create view Booking_view as
+select guest_booked_id ,Booking_date,Total_price from BOOKING;
+
+select * from Booking_view;
+
+create view Reservation_view as
+select Reservation_id ,Check_in ,Check_out from RESERVATION;
+
+select * from  Reservation_view;
+
+create view Employee_view as
+select Employee_id ,Employee_Name ,Employee_Positon from EMPLOYEE;
+
+select * from Employee_view;
+
+create view Depart_view as
+select Department_name,Contact_Information from Department;
+select * from Depart_view;
+
+create view Room_view as
+select Room_id ,Occupancy_capacity ,Price_per_Night from Room;
+select * from  Room_view;
 
 #------------***************** Insert Command ******************------------
 
