@@ -264,13 +264,13 @@ INSERT INTO DEPARTMENT (Department_id,Department_name,  Employee_Positon, Contac
 
 #      ================       ROOM Table     =================: 
 
-INSERT INTO ROOM (Room_id, Room_typee, Occupancy_capacity, Price_per_Night)VALUES (1, 'Deluxe', 2, 200);
-INSERT INTO ROOM (Room_id, Room_typee, Occupancy_capacity, Price_per_Night)VALUES (2, 'Standard', 2, 1500);
-INSERT INTO ROOM (Room_id, Room_typee, Occupancy_capacity, Price_per_Night)VALUES (3, 'Suite', 4, 300);
-INSERT INTO ROOM (Room_id, Room_typee, Occupancy_capacity, Price_per_Night)VALUES (4, 'Family Room', 6, 400);
-INSERT INTO ROOM (Room_id, Room_typee, Occupancy_capacity, Price_per_Night)VALUES (5, 'Accessible Room', 2, 175);
-INSERT INTO ROOM (Room_id, Room_typee, Occupancy_capacity, Price_per_Night)VALUES (6, 'Deluxe with Jacuzzi', 2, 250);
-INSERT INTO ROOM (Room_id, Room_typee, Occupancy_capacity, Price_per_Night)VALUES (7, 'Standard with Balcony', 2, 1199);
+INSERT INTO ROOM (Room_id, Room_type, Occupancy_capacity, Price_per_Night)VALUES (1, 'Deluxe', 2, 200);
+INSERT INTO ROOM (Room_id, Room_type, Occupancy_capacity, Price_per_Night)VALUES (2, 'Standard', 2, 1500);
+INSERT INTO ROOM (Room_id, Room_type, Occupancy_capacity, Price_per_Night)VALUES (3, 'Suite', 4, 300);
+INSERT INTO ROOM (Room_id, Room_type, Occupancy_capacity, Price_per_Night)VALUES (4, 'Family Room', 6, 400);
+INSERT INTO ROOM (Room_id, Room_type, Occupancy_capacity, Price_per_Night)VALUES (5, 'Accessible Room', 2, 175);
+INSERT INTO ROOM (Room_id, Room_type, Occupancy_capacity, Price_per_Night)VALUES (6, 'Deluxe with Jacuzzi', 2, 250);
+INSERT INTO ROOM (Room_id, Room_type, Occupancy_capacity, Price_per_Night)VALUES (7, 'Standard with Balcony', 2, 1199);
 
  UPDATE Room SET Room_type = 'Deluxe' WHERE Room_id = 1;
  UPDATE Room SET Occupancy_capacity = 2 WHERE Room_id = 2;
