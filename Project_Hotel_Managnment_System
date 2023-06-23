@@ -13,18 +13,18 @@ Guest_id int,
 PRIMARY KEY( Hotel_Name)
 
 );
+
 CREATE TABLE GUEST(
 Guest_id INT NOT NULL AUTO_INCREMENT,
 Guest_Name varchar(266) NOT NULL,
 Room_id int,
-Phone_Number varchar(10) not null,
-Email_Adress varchar(266),
-Paynment_Inform varchar(266) not null,
-Adress varchar(266) not null,
-
-  PRIMARY KEY (Guest_id)
-
+Phone_Number varchar(50) not null,
+Email_Address varchar(266),
+Payment_Inform varchar(266) not null,
+Address varchar(266) not null,
+PRIMARY KEY (Guest_id)
 );
+
 CREATE TABLE BOOKING(
 guest_booked_id INT NOT NULL,
 booking_time int NOT NULL,
@@ -33,6 +33,7 @@ Total_price INT NOT NULL,
 Guest_id INT ,
 PRIMARY KEY (guest_booked_id)
 );
+
 CREATE TABLE RESERVATION(
 Reservation_id int ,
 Guest_id int,
@@ -42,6 +43,7 @@ Check_out DATE NOT NULL,
 Total_Cost int,
 PRIMARY KEY (Reservation_id)
 );
+
 CREATE TABLE  EMPLOYEE(
 Employee_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 Employee_Name varchar(266) NOT NULL,
@@ -49,12 +51,14 @@ Employee_Positon varchar(266) NOT NULL,
 Contact_Information VARCHAR(266) NOT NULL,
 Departnmet_id int
 );
+
 CREATE TABLE  Department(
 Departnmet_id int NOT NULL AUTO_INCREMENT,
 Department_name VARCHAR(255) NOT NULL,
 Contact_Information VARCHAR(266) NOT NULL,
 PRIMARY KEY (Departnmet_id)
 );
+
 CREATE TABLE  Room(
 Room_id int NOT NULL AUTO_INCREMENT,
 Room_type varchar(266) NOT NULL,
@@ -89,32 +93,27 @@ ALTER TABLE Guest
 ADD CONSTRAINT FK_ROOM_Room_typee
 FOREIGN KEY (Room_id)REFERENCES Room(Room_id);
 
-#------------***************** Table and Views ******************------------
+#------------******************* Table and Views ******************------------
 
 create view hotel_view as
 select Hotel_Name, Location from HOTEL;
-
 select * from hotel_view;
 
 create view Guest_view as
 select  Guest_id,Guest_Name,Phone_Number from GUEST;
-
 select * from Guest_view;
 
 
 create view Booking_view as
 select guest_booked_id ,Booking_date,Total_price from BOOKING;
-
 select * from Booking_view;
 
 create view Reservation_view as
 select Reservation_id ,Check_in ,Check_out from RESERVATION;
-
 select * from  Reservation_view;
 
 create view Employee_view as
 select Employee_id ,Employee_Name ,Employee_Positon from EMPLOYEE;
-
 select * from Employee_view;
 
 create view Depart_view as
@@ -128,13 +127,13 @@ select * from  Room_view;
 #------------***************** Insert Command ******************------------
 
 #      ================     Hotel Table     =================
-INSERT INTO HOTEL (Hotel_Name, Location, Number_of_Room,Guest_id )VALUES ('Grand Hotel', 'New York City', 1000,1);
-INSERT INTO HOTEL (Hotel_Name, Location, Number_of_Room,Guest_id )VALUES ('Hilton Hotel', 'Los Angeles', 500,2);
-INSERT INTO HOTEL (Hotel_Name, Location, Number_of_Room,Guest_id )VALUES ('Marriott Hotel', 'Chicago', 250,3);
-INSERT INTO HOTEL (Hotel_Name, Location, Number_of_Room,Guest_id )VALUES ('Shawaton Hotel', 'Los Angales', 100,4);
-INSERT INTO HOTEL (Hotel_Name, Location, Number_of_Room,Guest_id )VALUES ('W Hotel', 'Miami', 75,5);
-INSERT INTO HOTEL (Hotel_Name, Location, Number_of_Room,Guest_id )VALUES ('The Ritz-Carlton', 'Boston', 50,6);
-INSERT INTO HOTEL (Hotel_Name, Location, Number_of_Room,Guest_id )VALUES ('Four Seasons Hotel', 'Istanbol', 25,7);
+#INSERT INTO HOTEL (Hotel_Name, Location, Number_of_Room,Guest_id )VALUES ('Grand Hotel', 'New York City', 1000,1);
+#INSERT INTO HOTEL (Hotel_Name, Location, Number_of_Room,Guest_id )VALUES ('Hilton Hotel', 'Los Angeles', 500,2);
+#INSERT INTO HOTEL (Hotel_Name, Location, Number_of_Room,Guest_id )VALUES ('Marriott Hotel', 'Chicago', 250,3);
+#INSERT INTO HOTEL (Hotel_Name, Location, Number_of_Room,Guest_id )VALUES ('Shawaton Hotel', 'Los Angales', 100,4);
+#INSERT INTO HOTEL (Hotel_Name, Location, Number_of_Room,Guest_id )VALUES ('W Hotel', 'Miami', 75,5);
+#INSERT INTO HOTEL (Hotel_Name, Location, Number_of_Room,Guest_id )VALUES ('The Ritz-Carlton', 'Boston', 50,6);
+#INSERT INTO HOTEL (Hotel_Name, Location, Number_of_Room,Guest_id )VALUES ('Four Seasons Hotel', 'Istanbol', 25,7);
 
 # Update the location of the hotel.
 UPDATE Hotel
@@ -156,15 +155,15 @@ WHERE Hotel_Name = 'Four Seasons Hotel';
 
 #      ================     Guest Table     =================
 
-INSERT INTO GUEST (Guest_id, Guest_Name, Room_id, Phone_Number, Email_Address, Payment_Information, Address)
+INSERT INTO GUEST (Guest_id, Guest_Name, Room_id, Phone_Number, Email_Address, Payment_Inform, Address)
 VALUES
-(1, 'John Smith', 1, '123-456-7890', 'john.smith@email.com', 'Credit Card: 1234-5678-9012-3456', '123 Main Street, Anytown, USA'),
-(2, 'Jane Doe', 2, '555-555-5555', 'jane.doe@email.com', 'Debit Card: 4567-8901-2345-6789', '456 Elm Street, Anytown, USA'),
-(3, 'Michael Jones', 3, '987-654-3210', 'michael.jones@email.com', 'PayPal: michaeljones@paypal.com', '789 Oak Street, Anytown, USA'),
-(4, 'Sarah Williams', 4, '321-098-7654', 'sarah.williams@email.com', 'Cash', '101 Pine Street, Anytown, USA'),
-(5, 'David Green', 5, '876-543-2109', 'david.green@email.com', 'Traveler Cheque', '202 Main Street, Anytown, USA'),
-(6, 'Sally Brown', 6, '111-222-3333', 'sally.brown@email.com', 'Credit Card: 4567-8901-2345-6789', '321 Elm Street, Anytown, USA'),
-(7, 'Tom Hanks', 7, '444-555-6666', 'tom.hanks@email.com', 'Debit Card: 1234-5678-9012-3456', '789 Oak Street, Anytown, USA');
+(1, 'John Smith', 1, '0320-5678098', 'john.smith@email.com', 'Credit Card: 1234-5678-9012-3456', '123 Main Street, Anytown, USA'),
+(2, 'Jane Doe', 2, '0320-5678098', 'jane.doe@email.com', 'Debit Card: 4567-8901-2345-6789', '456 Elm Street, Anytown, USA'),
+(3, 'Michael Jones', 3, '0320-1234698', 'michael.jones@email.com', 'PayPal: michaeljones@paypal.com', '789 Oak Street, Anytown, USA'),
+(4, 'Sarah Williams', 4, '0321-0987654', 'sarah.williams@email.com', 'Cash', '101 Pine Street, Anytown, USA'),
+(5, 'David Green', 5, '0316-5432109', 'david.green@email.com', 'Traveler Cheque', '202 Main Street, Anytown, USA'),
+(6, 'Sally Brown', 6, '0332-5672348', 'sally.brown@email.com', 'Credit Card: 4567-8901-2345-6789', '321 Elm Street, Anytown, USA'),
+(7, 'Tom Hanks', 7, '0304-5556666', 'tom.hanks@email.com', 'Debit Card: 1234-5678-9012-3456', '789 Oak Street, Anytown, USA');
 
  UPDATE Guest SET Guest_Name = 'Steven Smith' WHERE Guest_id = 1;
  UPDATE Guest SET Room_type = 'Deluxe' WHERE Guest_id = 2;
