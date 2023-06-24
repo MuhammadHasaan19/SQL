@@ -1,4 +1,4 @@
-#DROP DATABASE Hotel_Managnment_System; 
+DROP DATABASE Hotel_Managnment_System; 
 CREATE DATABASE  Hotel_Managnment_System; 
 USE  Hotel_Managnment_System; 
 #SET SQL_SAFE_UPDATE=0;
@@ -129,10 +129,10 @@ INSERT INTO ROOM (Room_id,Room_type, Occupancy_capacity, Price_per_Night) VALUES
 
 INSERT INTO GUEST (Guest_id,Guest_Name, Room_id, Phone_Number, Email_Address, Payment_Inform, Address) VALUES(1,'John Doe', 001, '0123-4567890', 'johndoe@gmail.com', 'Visa', '123 Main Street');
 INSERT INTO GUEST (Guest_id,Guest_Name, Room_id, Phone_Number, Email_Address, Payment_Inform, Address) VALUES(2,'Jane Doe', 002, '0456-7890123', 'janedoe@gmail.com', 'Mastercard', '456 Elm Street');
-INSERT INTO GUEST (Guest_id,Guest_Name, Room_id, Phone_Number, Email_Address, Payment_Inform, Address) VALUES(3,'Bill Smith',203, '0789-0123456', 'billsmith@gmail.com', 'Roshan Card', '789 Oak Street');
-INSERT INTO GUEST (Guest_id,Guest_Name, Room_id, Phone_Number, Email_Address, Payment_Inform, Address) VALUES(4,'Mary Jones', 104, '0812-3456789', 'maryjones@gmail.com', 'Cheque', '123 Maple Street');
-INSERT INTO GUEST (Guest_id,Guest_Name, Room_id, Phone_Number, Email_Address, Payment_Inform, Address) VALUES(5,'Peter Brown', 305, '0345-6789012', 'peterbrown@gmail.com', 'PayPal', '456 Pine Street');
-INSERT INTO GUEST (Guest_id,Guest_Name, Room_id, Phone_Number, Email_Address, Payment_Inform, Address) VALUES(6,'Susan Green', 106, '0678-9012345', 'susangreen@gmail.com', 'Cash', '789 Birch Street');
+INSERT INTO GUEST (Guest_id,Guest_Name, Room_id, Phone_Number, Email_Address, Payment_Inform, Address) VALUES(3,'Bill Smith',007, '0789-0123456', 'billsmith@gmail.com', 'Roshan Card', '789 Oak Street');
+INSERT INTO GUEST (Guest_id,Guest_Name, Room_id, Phone_Number, Email_Address, Payment_Inform, Address) VALUES(4,'Mary Jones', 004, '0812-3456789', 'maryjones@gmail.com', 'Cheque', '123 Maple Street');
+INSERT INTO GUEST (Guest_id,Guest_Name, Room_id, Phone_Number, Email_Address, Payment_Inform, Address) VALUES(5,'Peter Brown', 005, '0345-6789012', 'peterbrown@gmail.com', 'PayPal', '456 Pine Street');
+INSERT INTO GUEST (Guest_id,Guest_Name, Room_id, Phone_Number, Email_Address, Payment_Inform, Address) VALUES(6,'Susan Green', 006, '0678-9012345', 'susangreen@gmail.com', 'Cash', '789 Birch Street');
 
 #      ================     RESERVATION Table     =================:
 
