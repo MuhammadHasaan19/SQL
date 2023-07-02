@@ -117,11 +117,11 @@ INSERT INTO DEPARTMENT (Department_id,Department_name, Contact_Information) VALU
 
 #      ================       ROOM Table     =================: 
 
-INSERT INTO ROOM (Room_id,Room_type, Occupancy_capacity, Price_per_Night) VALUES(1,'Single', '1', 1000);
+INSERT INTO ROOM (Room_id,Room_type, Occupancy_capacity, Price_per_Night) VALUES(1,'Single', '4', 1000);
 INSERT INTO ROOM (Room_id,Room_type, Occupancy_capacity, Price_per_Night) VALUES(2,'Double', '2', 1500);
-INSERT INTO ROOM (Room_id,Room_type, Occupancy_capacity, Price_per_Night) VALUES(3,'Suite', '4', 2000);
+INSERT INTO ROOM (Room_id,Room_type, Occupancy_capacity, Price_per_Night) VALUES(3,'Suite', '4', 1500);
 INSERT INTO ROOM (Room_id,Room_type, Occupancy_capacity, Price_per_Night) VALUES(4,'Family Room', '6', 2500);
-INSERT INTO ROOM (Room_id,Room_type, Occupancy_capacity, Price_per_Night) VALUES(5,'Accessible Room', '1', 3000);
+INSERT INTO ROOM (Room_id,Room_type, Occupancy_capacity, Price_per_Night) VALUES(5,'Accessible Room', '4', 1000);
 INSERT INTO ROOM (Room_id,Room_type, Occupancy_capacity, Price_per_Night) VALUES(6,'Pet-Friendly Room', '2', 350);
 INSERT INTO ROOM (Room_id,Room_type, Occupancy_capacity, Price_per_Night) VALUES(7,'Standard with Balcony', 'NULL', 1000);
 
@@ -155,7 +155,7 @@ INSERT INTO EMPLOYEE (Employee_id,Employee_Name, Employee_Positon, Contact_Infor
 
 #      ================     BOOKING Table     =================
 
-INSERT INTO BOOKING (guest_booked_id, booking_time, Booking_date, Total_price )VALUES (1, '10:00:00', '2023-06-03', 100);
+INSERT INTO BOOKING (guest_booked_id, booking_time, Booking_date, Total_price )VALUES (1, '10:00:00', '2023-06-03', 150);
 INSERT INTO BOOKING (guest_booked_id, booking_time, Booking_date, Total_price )VALUES (2, '12:00:00', '2023-06-07', 500);
 INSERT INTO BOOKING (guest_booked_id, booking_time, Booking_date, Total_price )VALUES (3, '14:00:00', '2023-06-10', 250);
 INSERT INTO BOOKING (guest_booked_id, booking_time, Booking_date, Total_price)VALUES (4, '16:00:00', '2023-06-13', 100);
@@ -262,39 +262,81 @@ select * from ROOM;
 #-----------------************ Joins **************--------------------
 
 SELECT G.Guest_Name, B.Booking_date, Total_price
-FROM Guest G
-INNER JOIN Booking B
+FROM Guest  as G
+INNER JOIN Booking as B
 ON G.Guest_id = B.Guest_id;
 
 SELECT r.Room_id, r.Room_type, r.Occupancy_capacity
-FROM Room r
-INNER JOIN Reservation R
-ON r.Room_id = R.Room_Reserved
+FROM Room as r
+INNER JOIN Reservation as Re
+ON r.Room_id = Re.Room_Reserved
 WHERE Check_in <= CURRENT_DATE()
 AND Check_out >= CURRENT_DATE();
 
-SELECT Employee_Name, Employee_Positon, Contact_Information
-FROM Employee e
-INNER JOIN Department d
+SELECT e.Employee_Name, e.Employee_Positon,e.Contact_Information
+FROM Employee as e
+INNER JOIN Department as d
 ON e.Department_id = d.Department_id
 WHERE Department_name = 'Housekeeping';
 
 
 #-------------********* Aggregate Function *********--------------------
 
-SELECT Hotel_Name, COUNT(Room_id) AS Total_rooms
-FROM Hotel
-INNER JOIN Room
-ON Hotel.Hotel_Name = Room.Hotel_Name
-GROUP BY Hotel_Name;
+Select Room_id,Occupancy_capacity,max(Price_per_Night) as MAX_PRICE
+from ROOM
+group by Room_id,Occupancy_capacity
+having Occupancy_capacity = '4'
+order by Room_id;
 
-SELECT Hotel_Name, AVG(Price_per_Night) AS Average_price
-FROM Room
-INNER JOIN Hotel
-ON Room.Hotel_Name = Hotel.Hotel_Name
-GROUP BY Hotel_Name;
+SELECT Guest_id, Guest_Name, GROUP_CONCAT(Phone_Number) AS AllPhoneNumbers
+FROM GUEST
+GROUP BY Guest_id, Guest_Name;
 
 
+#-------------******** Cases *********--------------------
+
+
+#-------------******** Co-Related Queries *********--------------------
+SELECT h.Hotel_Name, h.Location
+FROM HOTEL h
+WHERE Number_of_Room = (SELECT MAX(Number_of_Room) FROM HOTEL);
+
+SELECT Guest_id, Guest_Name, 
+       (SELECT COUNT(*) FROM BOOKING b WHERE b.Guest_id = g.Guest_id) AS Total_Bookings
+FROM GUEST g;
+
+SELECT *
+FROM BOOKING b
+WHERE Total_price > 1000 AND EXISTS (
+SELECT 1 FROM GUEST g 
+WHERE g.Guest_id = b.Guest_id);
+
+SELECT *
+FROM RESERVATION r
+WHERE Total_Cost > 500 AND EXISTS (
+SELECT 1 FROM GUEST g 
+WHERE g.Guest_id = r.Guest_id);
+
+
+
+#-------------******** Nested Queries *********--------------------
+
+SELECT Guest_id, Guest_Name
+FROM GUEST
+WHERE Guest_id IN (SELECT Guest_id FROM BOOKING WHERE Total_price > 150);
+
+SELECT * FROM GUEST
+WHERE Guest_id IN (SELECT Guest_id FROM RESERVATION 
+WHERE Total_Cost > (SELECT AVG(Total_Cost) FROM RESERVATION));
+
+SELECT * FROM EMPLOYEE
+WHERE Employee_id IN (
+SELECT Employee_id FROM 
+EMPLOYEE WHERE Department_id = 1);
+
+SELECT booking_time
+FROM BOOKING
+WHERE guest_booked_id = (SELECT MAX(guest_booked_id) FROM BOOKING);
 
 #-------------******** Stored Procedures *********--------------------
 call Booking_DT();
