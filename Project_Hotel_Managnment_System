@@ -1,4 +1,4 @@
-#DROP DATABASE Hotel_Managnment_System; 
+DROP DATABASE Hotel_Managnment_System; 
 CREATE DATABASE  Hotel_Managnment_System; 
 USE  Hotel_Managnment_System; 
 #SET SQL_SAFE_UPDATE=0;
@@ -339,9 +339,16 @@ FROM BOOKING
 WHERE guest_booked_id = (SELECT MAX(guest_booked_id) FROM BOOKING);
 
 #-------------******** Stored Procedures *********--------------------
-call Booking_DT();
-call  Display_Guest();
-call Room_data(4,1500);
-call Hotel_DT ('Grand Hotel','Lahore');
-#call `Employees`();
+#drop procedure display;
+DELIMITER //
+ CREATE PROCEDURE DISPLAY( )
+ BEGIN 
+ SELECT * FROM EMPLOYEE;
+ END //
+ DELIMITER ;
+ 
+ CALL DISPLAY();
+
+
+
 
