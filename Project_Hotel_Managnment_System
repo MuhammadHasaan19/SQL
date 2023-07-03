@@ -1,4 +1,4 @@
-DROP DATABASE Hotel_Managnment_System; 
+#DROP DATABASE Hotel_Managnment_System; 
 CREATE DATABASE  Hotel_Managnment_System; 
 USE  Hotel_Managnment_System; 
 #SET SQL_SAFE_UPDATE=0;
@@ -139,18 +139,18 @@ INSERT INTO GUEST (Guest_id,Guest_Name, Room_id, Phone_Number, Email_Address, Pa
 INSERT INTO RESERVATION (Reservation_id, Guest_id, Room_Reserved, Check_in, Check_out, Total_Cost) VALUES(1, 001, '101', '2023-06-23', '2023-06-25', 600);
 INSERT INTO RESERVATION (Reservation_id, Guest_id, Room_Reserved, Check_in, Check_out, Total_Cost) VALUES(2, 002, '102', '2023-06-27', '2023-06-30', 500);
 INSERT INTO RESERVATION (Reservation_id, Guest_id, Room_Reserved, Check_in, Check_out, Total_Cost) VALUES(3, 003, '103', '2023-06-27', '2023-07-05', 300);
-INSERT INTO RESERVATION (Reservation_id, Guest_id, Room_Reserved, Check_in, Check_out, Total_Cost) VALUES(4, 004, '104', '2023-08-23', '2023-08-27', 200);
+INSERT INTO RESERVATION (Reservation_id, Guest_id, Room_Reserved, Check_in, Check_out, Total_Cost) VALUES(4, 004, '104', '2023-08-23', '2023-08-27', 500);
 INSERT INTO RESERVATION (Reservation_id, Guest_id, Room_Reserved, Check_in, Check_out, Total_Cost) VALUES(5, 005, '105', '2023-06-10', '2023-06-15', 100);
 INSERT INTO RESERVATION (Reservation_id, Guest_id, Room_Reserved, Check_in, Check_out, Total_Cost) VALUES(6, 006, '106', '2023-06-11', '2023-06-17', 250);
 
 #      ================      EMPLOYEE  Table     =================:
 
-INSERT INTO EMPLOYEE (Employee_id,Employee_Name, Employee_Positon, Contact_Information, Department_id) VALUES(1,'John Doe', 'Front Desk Clerk', '123-4567890', 1);
-INSERT INTO EMPLOYEE (Employee_id,Employee_Name, Employee_Positon, Contact_Information, Department_id) VALUES(2,'Jane Doe', 'Housekeeping Manager', '0456-7890123', 2);
+INSERT INTO EMPLOYEE (Employee_id,Employee_Name, Employee_Positon, Contact_Information, Department_id) VALUES(1,'John Doe', 'Front-Desk Clerk', '123-4567890', 1);
+INSERT INTO EMPLOYEE (Employee_id,Employee_Name, Employee_Positon, Contact_Information, Department_id) VALUES(2,'Jane Doe', 'Housekeeping-Manager', '0456-7890123', 2);
 INSERT INTO EMPLOYEE (Employee_id,Employee_Name, Employee_Positon, Contact_Information, Department_id) VALUES(3,'ill Smith', 'Maintenance Technician', '0789-0123456', 3);
-INSERT INTO EMPLOYEE (Employee_id,Employee_Name, Employee_Positon, Contact_Information, Department_id) VALUES(4,'Mary Jones', 'Front Desk Manager', '0345-3456789', 6);
+INSERT INTO EMPLOYEE (Employee_id,Employee_Name, Employee_Positon, Contact_Information, Department_id) VALUES(4,'Mary Jones', 'Front-Desk-Manager', '0345-3456789', 6);
 INSERT INTO EMPLOYEE (Employee_id,Employee_Name, Employee_Positon, Contact_Information, Department_id) VALUES(5,'Peter Brown', 'Reservations Clerk', '0344-6789012', 4);
-INSERT INTO EMPLOYEE (Employee_id,Employee_Name, Employee_Positon, Contact_Information, Department_id) VALUES(6,'Susan Green', 'Concierge', '0306-9012345', 5);
+INSERT INTO EMPLOYEE (Employee_id,Employee_Name, Employee_Positon, Contact_Information, Department_id) VALUES(6,'Susan Green', 'Concierge Clerk', '0306-9012345', 5);
 INSERT INTO EMPLOYEE (Employee_id,Employee_Name, Employee_Positon, Contact_Information, Department_id) VALUES(null,'NULL', 'NULL', 'NULL', NULL);
 
 #      ================     BOOKING Table     =================
@@ -259,7 +259,19 @@ select * from RESERVATION;
 select * from EMPLOYEE; 
 select * from ROOM; 
 
+SELECT * FROM HOTEL WHERE  Location = 'Istanbol';
+SELECT * FROM GUEST WHERE  Phone_Number = '0812-3456789';
+SELECT * FROM EMPLOYEE WHERE Employee_Positon = 'Concierge Clerk';
+SELECT * FROM BOOKING WHERE Booking_Date = '2023-06-13';
+SELECT * FROM RESERVATION WHERE Total_Cost = 500;
+
+
 #-----------------************ Joins **************--------------------
+
+SELECT *
+FROM HOTEL as H
+JOIN ROOM ON HL.Room_id = R.Room_id;
+
 
 SELECT G.Guest_Name, B.Booking_date, Total_price
 FROM Guest  as G
@@ -279,6 +291,10 @@ INNER JOIN Department as d
 ON e.Department_id = d.Department_id
 WHERE Department_name = 'Housekeeping';
 
+SELECT * FROM EMPLOYEE
+JOIN DEPARTMENT
+ ON EMPLOYEE.Department_id = DEPARTMENT.Department_id;
+
 
 #-------------********* Aggregate Function *********--------------------
 
@@ -292,9 +308,44 @@ SELECT Guest_id, Guest_Name, GROUP_CONCAT(Phone_Number) AS AllPhoneNumbers
 FROM GUEST
 GROUP BY Guest_id, Guest_Name;
 
-
 #-------------******** Cases *********--------------------
 
+SELECT Hotel_Name,Number_of_Room,
+	CASE   WHEN Number_of_Room >= 1000 THEN 'Excellent'
+           WHEN Number_of_Room >= 500 THEN 'Very Good'
+           WHEN Number_of_Room >= 200 THEN 'Good'
+           ELSE 'Average or below'
+       END AS Number_of_Room_Category
+FROM HOTEL;
+
+SELECT Guest_Name,Payment_Inform,
+CASE Payment_Inform 
+        WHEN 'J' THEN 'Assistant'
+		WHEN 'M' THEN 'Manager'
+		ELSE 'Other'
+       END AS Payment_Inform_Label
+FROM GUEST;
+
+SELECT guest_booked_id,Total_Price,
+CASE    WHEN Total_Price >= 500 THEN 'Expensive'
+		WHEN Total_Price >= 200 THEN 'Moderate'
+		ELSE 'Affordable'
+        END AS Price_Category
+FROM BOOKING;
+
+SELECT Reservation_id,Check_out,
+	CASE  Check_out
+           WHEN 'PAID' THEN 'Paid'
+           ELSE 'Unpaid'
+       END AS  Check_out_Label
+FROM RESERVATION;
+
+SELECT Employee_Name,Employee_Positon,
+	CASE   WHEN Employee_Positon >= 'Housekeeping-Manager' THEN 'High-Paid'
+           WHEN Employee_Positon >= 'Maintenance Technician' THEN 'Moderate-Paid'
+           ELSE 'Low-Paid'
+           END AS Employee_Positon_Category
+FROM EMPLOYEE;
 
 #-------------******** Co-Related Queries *********--------------------
 SELECT h.Hotel_Name, h.Location
@@ -302,21 +353,22 @@ FROM HOTEL h
 WHERE Number_of_Room = (SELECT MAX(Number_of_Room) FROM HOTEL);
 
 SELECT Guest_id, Guest_Name, 
-       (SELECT COUNT(*) FROM BOOKING b WHERE b.Guest_id = g.Guest_id) AS Total_Bookings
+(SELECT COUNT(*) FROM BOOKING b WHERE b.Guest_id = g.Guest_id) AS Total_Bookings
 FROM GUEST g;
 
-SELECT *
-FROM BOOKING b
+SELECT * FROM BOOKING b
 WHERE Total_price > 1000 AND EXISTS (
 SELECT 1 FROM GUEST g 
 WHERE g.Guest_id = b.Guest_id);
 
-SELECT *
-FROM RESERVATION r
+SELECT * FROM RESERVATION r
 WHERE Total_Cost > 500 AND EXISTS (
 SELECT 1 FROM GUEST g 
 WHERE g.Guest_id = r.Guest_id);
 
+SELECT *  FROM EMPLOYEE 
+WHERE Department_id = (SELECT Department_id FROM EMPLOYEE
+WHERE Employee_Name = 'John Doe');
 
 
 #-------------******** Nested Queries *********--------------------
@@ -338,17 +390,85 @@ SELECT booking_time
 FROM BOOKING
 WHERE guest_booked_id = (SELECT MAX(guest_booked_id) FROM BOOKING);
 
+SELECT Department_name,
+(SELECT COUNT(*) FROM EMPLOYEE 
+WHERE Department_id = D.Department_id) as Total_Employees
+FROM Department D
+WHERE Department_name = 'Housekeeping';
+
+
+
 #-------------******** Stored Procedures *********--------------------
-#drop procedure display;
+
 DELIMITER //
- CREATE PROCEDURE DISPLAY( )
- BEGIN 
- SELECT * FROM EMPLOYEE;
- END //
- DELIMITER ;
- 
- CALL DISPLAY();
+CREATE PROCEDURE InsertHotel(
+    IN p_Hotel_Name VARCHAR(256),
+    IN p_Location VARCHAR(256),
+    IN p_Number_of_Room INT,
+    IN p_Guest_id INT
+)
+BEGIN
+    INSERT INTO HOTEL (Hotel_Name, Location, Number_of_Room, Guest_id)
+    VALUES (p_Hotel_Name, p_Location, p_Number_of_Room, p_Guest_id);
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE InsertGuest(
+    IN p_Guest_Name VARCHAR(266),
+    IN p_Room_id INT,
+    IN p_Phone_Number VARCHAR(50),
+    IN p_Email_Address VARCHAR(266),
+    IN p_Payment_Inform VARCHAR(266),
+    IN p_Address VARCHAR(266)
+)
+BEGIN
+    INSERT INTO GUEST (Guest_Name, Room_id, Phone_Number, Email_Address, Payment_Inform, Address)
+    VALUES (p_Guest_Name, p_Room_id, p_Phone_Number, p_Email_Address, p_Payment_Inform, p_Address);
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE InsertBooking(
+    IN p_guest_booked_id INT,
+    IN p_booking_time TIME,
+    IN p_Booking_date DATE,
+    IN p_Total_price INT
+)
+BEGIN
+    INSERT INTO BOOKING (guest_booked_id, booking_time, Booking_date, Total_price)
+    VALUES (p_guest_booked_id, p_booking_time, p_Booking_date, p_Total_price);
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE InsertEmployee(
+    IN p_Department_id INT,
+    IN p_Employee_Name VARCHAR(266),
+    IN p_Employee_Position VARCHAR(266),
+    IN p_Contact_Information VARCHAR(266)
+)
+BEGIN
+    INSERT INTO EMPLOYEE (Department_id, Employee_Name, Employee_Position, Contact_Information)
+    VALUES (p_Department_id, p_Employee_Name, p_Employee_Position, p_Contact_Information);
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE InsertDepartment(
+    IN p_Department_name VARCHAR(255),
+    IN p_Contact_Information VARCHAR(266)
+)
+BEGIN
+    INSERT INTO Department (Department_name, Contact_Information)
+    VALUES (p_Department_name, p_Contact_Information);
+END //
+DELIMITER ;
 
 
-
-
+#drop procedure display_emp;
+CALL InsertHotel();
+CALL InsertGuest();
+CALL InsertBooking();
+CALL InsertEmployee();
+CALL InsertDepartment();
