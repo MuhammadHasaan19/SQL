@@ -268,11 +268,6 @@ SELECT * FROM RESERVATION WHERE Total_Cost = 500;
 
 #-----------------************ Joins **************--------------------
 
-SELECT *
-FROM HOTEL as H
-JOIN ROOM ON HL.Room_id = R.Room_id;
-
-
 SELECT G.Guest_Name, B.Booking_date, Total_price
 FROM Guest  as G
 INNER JOIN Booking as B
@@ -465,8 +460,6 @@ BEGIN
 END //
 DELIMITER ;
 
-
-#drop procedure display_emp;
 CALL InsertHotel();
 CALL InsertGuest();
 CALL InsertBooking();
