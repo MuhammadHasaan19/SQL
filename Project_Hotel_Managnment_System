@@ -78,7 +78,7 @@ FOREIGN KEY (Room_id)REFERENCES Room(Room_id);
 
 ALTER TABLE BOOKING
 ADD CONSTRAINT FK_BOOKING_guest_booked_id
-FOREIGN KEY (guest_booked_id)REFERENCES GUEST(Guest_id);
+FOREIGN KEY (Guest_id)REFERENCES GUEST(Guest_id);
 
 ALTER TABLE RESERVATION
 ADD CONSTRAINT FK_RESERVATION_Guest_Nmae
@@ -177,26 +177,27 @@ WHERE Hotel_Name = 'W Hotel';
 UPDATE Hotel
 SET Location = 'Riyad'
 WHERE Hotel_Name = 'Four Seasons Hotel';
-
+desc Hotel;
+select * from Hotel;
 
  UPDATE Guest SET Guest_Name = 'Steven Smith' WHERE Guest_id = 1;
  UPDATE Guest SET Payment_Inform  = 'Cash' WHERE Guest_id = 2;
  UPDATE Guest SET Phone_Number = '123-456-7890' WHERE Guest_id = 3;
  UPDATE Guest SET Email_Address = 'Steven.smith@example.com' WHERE Guest_id = 1;
  UPDATE Guest SET Payment_Inform = 'Paypal' WHERE Guest_id = 5;
-
+select * from Guest;
  
  UPDATE Booking SET  Total_price= 1200 WHERE guest_booked_id = 1;
- UPDATE Booking SET booking_time = '2023-04-25 18:00:00' WHERE guest_booked_id = 5;
+ UPDATE Booking SET booking_time = '18:00:00' WHERE guest_booked_id = 5;
  UPDATE Booking SET Booking_date = '2023-06-03' WHERE guest_booked_id = 6;
- UPDATE Booking SET Total_price = 5000 WHERE guest_booked_id =7 ;
-
+ UPDATE Booking SET Total_price = 5000 WHERE guest_booked_id =3 ;
+select * from Booking;
 
  UPDATE RESERVATION SET Total_Cost = 1200  WHERE Reservation_id = 1;
  UPDATE RESERVATION SET Room_Reserved = 'Deluxe' WHERE Reservation_id = 2;
  UPDATE RESERVATION SET Check_in = '2023-06-03' WHERE Reservation_id = 5;
  UPDATE RESERVATION SET Check_out = '2023-06-25' WHERE Reservation_id = 7;
-
+select * from reservation;
 
  UPDATE EMPLOYEE SET Employee_Name = 'Steven Smith' WHERE Employee_id = 1;
  UPDATE EMPLOYEE SET Employee_Positon = 'Front Desk Manager' WHERE Employee_id = 2;
@@ -209,14 +210,14 @@ WHERE Hotel_Name = 'Four Seasons Hotel';
  UPDATE Department SET Contact_Information = 'sales@example.com' WHERE Department_id = 3;
  UPDATE Department SET Department_name = 'Marketing' WHERE Department_id = 5;
  UPDATE Department SET  Department_name= 'Director' WHERE Department_id = 7;
-
+select * from department;
 
  UPDATE Room SET Room_type = 'Deluxe' WHERE Room_id = 1;
  UPDATE Room SET Occupancy_capacity = 2 WHERE Room_id = 2;
  UPDATE Room SET Price_per_Night = 100 WHERE Room_id = 3;
  UPDATE Room SET Occupancy_capacity = 4 WHERE Room_id = 5;
  UPDATE Room SET Room_type = 'Standard with Balcony' WHERE Room_id = 6;
- 
+ select * from room;
  
 #------------***************** Table Views ******************------------
 
